@@ -12,23 +12,12 @@
 
         <TextView
             android:id="@+id/Team"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="90"
             android:background="#FFFFFF"
             android:textColor="#423D35"
             android:textSize="20sp"
             android:textStyle="normal" />
-
-        <Button
-            android:id="@+id/b1"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="10"
-            android:background="#FFFFFF"
-            android:onClick="but"
-            android:text="Показать"
-            android:textColor="#2196F3" />
 
     </LinearLayout>
 </LinearLayout>

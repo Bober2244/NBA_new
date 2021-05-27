@@ -43,10 +43,7 @@ public class MainActivity extends Activity {
         registerForContextMenu(mListView);
 
     }
-    public void but(View v){
-        Intent i = new Intent(mContext, SecondActivity.class);
-        startActivity(i);
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -92,6 +89,13 @@ public class MainActivity extends Activity {
                 startActivityForResult(i, UPDATE_ACTIVITY);
                 updateList();
                 return true;
+            case R.id.show:
+                Intent g = new Intent(mContext, SecondActivity.class);
+                Teams d = mDBConnector.select(info.id);
+                g.putExtra("Show", d);
+                startActivity(g);
+                updateList();
+                return true;
             case R.id.delete:
                 mDBConnector.delete (info.id);
                 updateList();
@@ -121,7 +125,6 @@ public class MainActivity extends Activity {
     class myListAdapter extends BaseAdapter {
         private final LayoutInflater mLayoutInflater;
         private ArrayList<Teams> arrayMyMatches;
-        Button b = (Button) findViewById(R.id.b1);
 
         public myListAdapter(Context ctx, ArrayList<Teams> arr) {
             mLayoutInflater = LayoutInflater.from(ctx);

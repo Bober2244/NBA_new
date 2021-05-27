@@ -29,6 +29,7 @@ public class SecondActivity extends Activity {
     ListAdapt myAdapter;
     int ADD_ACTIVITY = 0;
     int UPDATE_ACTIVITY = 1;
+    private  long MyTeamID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,14 @@ public class SecondActivity extends Activity {
         myAdapter = new ListAdapt(context, mDBConnector.selectAll());
         mListView.setAdapter(myAdapter);
         registerForContextMenu(mListView);
+        if(getIntent().hasExtra("Show")){
+            Teams team=(Teams) getIntent().getSerializableExtra("Show");
+            MyTeamID=team.getId();
+        }
+        else
+        {
+            MyTeamID=-1;
+        }
     }
 
     @Override
