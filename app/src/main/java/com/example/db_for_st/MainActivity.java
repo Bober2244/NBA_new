@@ -3,7 +3,6 @@ package com.example.db_for_st;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -12,12 +11,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 
@@ -29,8 +25,6 @@ public class MainActivity extends Activity {
     DBMatches mDBConnector;
     Context mContext;
     ListView mListView;
-    SimpleCursorAdapter scAdapter;
-    Cursor cursor;
     myListAdapter myAdapter;
 
     int ADD_ACTIVITY = 0;
@@ -51,7 +45,6 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -62,6 +55,11 @@ public class MainActivity extends Activity {
             case R.id.add:
                 Intent i = new Intent(mContext, AddActivity.class);
                 startActivityForResult (i, ADD_ACTIVITY);
+                updateList();
+                return true;
+            case R.id.add_team:
+                Intent j = new Intent(mContext, AddActivity.class);
+                startActivityForResult (j, ADD_ACTIVITY);
                 updateList();
                 return true;
             case R.id.deleteAll:
