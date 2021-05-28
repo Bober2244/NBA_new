@@ -49,6 +49,18 @@ public class SecondActivity extends Activity {
         {
             MyTeamID=-1;
         }
+        showBoy();
+    }
+    public void showBoy(){
+        ArrayList<Object> a = new ArrayList<Object>();
+        String s;
+        TextView badboys = (TextView) findViewById(R.id.badboys);
+        TextView goalshouse = (TextView) findViewById(R.id.goalshouse);
+        TextView goalsguest = (TextView) findViewById(R.id.goalsguest);
+        s = (String)badboys.getText()+" "+goalshouse.getText().toString()+" "+goalsguest.getText().toString();
+        while (true){
+            a.add(s);
+        }
     }
 
     @Override
