@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.op.simpledb.MainActivity">
     <item android:id="@+id/add"
-        android:title="@string/add"
+        android:title="Добавить матч"
         android:icon="@android:drawable/ic_menu_add"/>
-
+    <item android:id="@+id/add_team"
+        android:title="Добавить команду"
+        android:icon="@android:drawable/ic_menu_add"/>
     <item android:id="@+id/deleteAll"
         android:title="@string/deleteAll"
         android:icon="@android:drawable/ic_menu_delete"/>

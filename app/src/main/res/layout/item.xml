@@ -4,20 +4,49 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="100"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="5dp">
-
+        android:paddingLeft="5dp" >
         <TextView
-            android:id="@+id/Team"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:background="#FFFFFF"
-            android:textColor="#423D35"
+            android:id="@+id/TeamHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textStyle="normal" />
-
+            android:textStyle="normal"
+            android:textColor="#000000"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:textColor="#000000"
+            android:text="-"
+            />
+        <TextView
+            android:id="@+id/TeamGuest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:textColor="#000000"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:textColor="#000000"
+            android:text="      "
+            />
+        <TextView
+            android:id="@+id/TeamTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:textColor="#000000"
+            />
     </LinearLayout>
 </LinearLayout>

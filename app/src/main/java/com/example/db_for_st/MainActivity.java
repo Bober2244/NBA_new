@@ -3,6 +3,7 @@ package com.example.db_for_st;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 
@@ -24,29 +26,32 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends Activity {
-    DBTeams mDBConnector;
+    DBMatches mDBConnector;
     Context mContext;
     ListView mListView;
+    SimpleCursorAdapter scAdapter;
+    Cursor cursor;
     myListAdapter myAdapter;
+
     int ADD_ACTIVITY = 0;
     int UPDATE_ACTIVITY = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mContext = this;
-        mDBConnector = new DBTeams(this);
-        mListView = (ListView) findViewById(R.id.list);
-        myAdapter = new myListAdapter(mContext, mDBConnector.selectAll());
+
+        mContext=this;
+        mDBConnector=new DBMatches(this);
+        mListView=(ListView)findViewById(R.id.list);
+        myAdapter=new myListAdapter(mContext,mDBConnector.selectAll());
         mListView.setAdapter(myAdapter);
         registerForContextMenu(mListView);
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -55,8 +60,8 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add:
-                Intent i = new Intent(mContext, AddTeams.class);
-                startActivityForResult(i, ADD_ACTIVITY);
+                Intent i = new Intent(mContext, AddActivity.class);
+                startActivityForResult (i, ADD_ACTIVITY);
                 updateList();
                 return true;
             case R.id.deleteAll:
@@ -83,17 +88,10 @@ public class MainActivity extends Activity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch(item.getItemId()) {
             case R.id.edit:
-                Intent i = new Intent(mContext, AddTeams.class);
-                Teams md = mDBConnector.select(info.id);
-                i.putExtra("Teams", md);
+                Intent i = new Intent(mContext, AddActivity.class);
+                Matches md = mDBConnector.select(info.id);
+                i.putExtra("Matches", md);
                 startActivityForResult(i, UPDATE_ACTIVITY);
-                updateList();
-                return true;
-            case R.id.show:
-                Intent g = new Intent(mContext, SecondActivity.class);
-                Teams d = mDBConnector.select(info.id);
-                g.putExtra("Show", d);
-                startActivity(g);
                 updateList();
                 return true;
             case R.id.delete:
@@ -104,51 +102,52 @@ public class MainActivity extends Activity {
                 return super.onContextItemSelected(item);
         }
     }
-
-    private void updateList() {
+    private void updateList () {
         myAdapter.setArrayMyData(mDBConnector.selectAll());
         myAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         if (resultCode == Activity.RESULT_OK) {
-            Teams md = (Teams) data.getExtras().getSerializable("Teams");
+            Matches md = (Matches) data.getExtras().getSerializable("Matches");
             if (requestCode == UPDATE_ACTIVITY)
                 mDBConnector.update(md);
             else
-                mDBConnector.insert(md.getTeam());
+                mDBConnector.insert(md.getTeamhouse(), md.getTeamguest(), md.getGoalshouse(), md.getGoalsguest());
             updateList();
         }
     }
 
     class myListAdapter extends BaseAdapter {
-        private final LayoutInflater mLayoutInflater;
-        private ArrayList<Teams> arrayMyMatches;
+        private LayoutInflater mLayoutInflater;
+        private ArrayList<Matches> arrayMyMatches;
 
-        public myListAdapter(Context ctx, ArrayList<Teams> arr) {
+        public myListAdapter (Context ctx, ArrayList<Matches> arr) {
             mLayoutInflater = LayoutInflater.from(ctx);
             setArrayMyData(arr);
         }
 
-        public ArrayList<Teams> getArrayMyData() {
+        public ArrayList<Matches> getArrayMyData() {
             return arrayMyMatches;
         }
 
-        public void setArrayMyData(ArrayList<Teams> arrayMyData) {
+        public void setArrayMyData(ArrayList<Matches> arrayMyData) {
             this.arrayMyMatches = arrayMyData;
         }
 
-        public int getCount() {
+        public int getCount () {
             return arrayMyMatches.size();
         }
 
-        public Object getItem(int position) {
+        public Object getItem (int position) {
+
             return position;
         }
 
-        public long getItemId(int position) {
-            Teams md = arrayMyMatches.get(position);
+        public long getItemId (int position) {
+            Matches md = arrayMyMatches.get(position);
             if (md != null) {
                 return md.getId();
             }
@@ -156,14 +155,21 @@ public class MainActivity extends Activity {
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
+
             if (convertView == null)
                 convertView = mLayoutInflater.inflate(R.layout.item, null);
-            TextView vTeamHome = (TextView) convertView.findViewById(R.id.Team);
-            Teams md = arrayMyMatches.get(position);
-            vTeamHome.setText(md.getTeam());
+
+            TextView vTeamHome= (TextView)convertView.findViewById(R.id.TeamHome);
+            TextView vTeamGuest = (TextView)convertView.findViewById(R.id.TeamGuest);
+            TextView vTotal=(TextView)convertView.findViewById(R.id.TeamTotal);
+
+
+            Matches md = arrayMyMatches.get(position);
+            vTeamHome.setText(md.getTeamhouse());
+            vTeamGuest.setText(md.getTeamguest());
+            vTotal.setText(md.getGoalshouse()+":"+md.getGoalsguest());
 
             return convertView;
         }
-
-    }
+    } // end myAdapter
 }
