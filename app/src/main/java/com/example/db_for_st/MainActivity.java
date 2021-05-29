@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
                 updateList();
                 return true;
             case R.id.add_team:
-                Intent j = new Intent(mContext, AddActivity.class);
+                Intent j = new Intent(mContext, AddTeams.class);
                 startActivityForResult (j, ADD_ACTIVITY);
                 updateList();
                 return true;

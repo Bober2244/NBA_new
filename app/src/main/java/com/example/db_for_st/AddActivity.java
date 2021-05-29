@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 public class AddActivity extends Activity {
     private Button btSave,btCancel;
-    private EditText etTeamHome,etTeamGuest,etGoalsHome,etGoalsGuest;
+    private EditText etGoalsHome,etGoalsGuest;
+    private Spinner etTeamHome,etTeamGuest;
     private Context context;
     private long MyMatchID;
     @Override
@@ -18,8 +20,8 @@ public class AddActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        etTeamHome=(EditText)findViewById(R.id.TeamHome);
-        etTeamGuest=(EditText)findViewById(R.id.TeamGuest);
+        etTeamHome=(Spinner)findViewById(R.id.TeamHome);
+        etTeamGuest=(Spinner)findViewById(R.id.TeamGuest);
         etGoalsHome=(EditText)findViewById(R.id.GoalsHome);
         etGoalsGuest=(EditText)findViewById(R.id.GoalsGuest);
         btSave=(Button)findViewById(R.id.butSave);
@@ -40,7 +42,10 @@ public class AddActivity extends Activity {
         btSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Matches matches=new Matches(MyMatchID,etTeamHome.getText().toString(),etTeamGuest.getText().toString(), Integer.parseInt(etGoalsHome.getText().toString()), Integer.parseInt(etGoalsGuest.getText().toString()));
+                Matches matches=new Matches(MyMatchID,etTeamHome.getText().toString(),
+                        etTeamGuest.getText().toString(),
+                        Integer.parseInt(etGoalsHome.getText().toString()),
+                        Integer.parseInt(etGoalsGuest.getText().toString()));
                 Intent intent=getIntent();
                 intent.putExtra("Matches",matches);
                 setResult(RESULT_OK,intent);
