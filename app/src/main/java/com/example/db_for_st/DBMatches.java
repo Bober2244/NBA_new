@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class DBMatches {
 
-    private static final String DATABASE_NAME = "simple.db";
+    private static final String DATABASE_NAME = "NBA.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "tableMatches";
+    private static final String TABLE_NAME = "Matches";
 
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_TEAMHOME = "TeamНоme";

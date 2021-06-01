@@ -1,27 +1,16 @@
 package com.example.db_for_st;
 
-import java.io.Serializable;
+import android.widget.EditText;
 
-public class Teams implements Serializable {
-    private long id;
-    private String teamhouse;
-    private double goalsguest;
+import java.util.ArrayList;
 
-    public Teams(long id, String teamh, double gg) {
-        this.id = id;
-        this.teamhouse = teamh;
-        this.goalsguest=gg;
+public class Teams {
+    public static ArrayList<String> team_ = new ArrayList<>();
+    public Teams(){
+
+    }
+    public void addTeam(EditText s){
+        team_.add(s.getText().toString());
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public String getHouse() {
-        return teamhouse;
-    }
-
-   public double getGuest() {
-        return goalsguest;
-    }
 }

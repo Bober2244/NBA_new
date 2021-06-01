@@ -85,13 +85,6 @@ public class MainActivity extends Activity {
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch(item.getItemId()) {
-            case R.id.edit:
-                Intent i = new Intent(mContext, AddActivity.class);
-                Matches md = mDBConnector.select(info.id);
-                i.putExtra("Matches", md);
-                startActivityForResult(i, UPDATE_ACTIVITY);
-                updateList();
-                return true;
             case R.id.delete:
                 mDBConnector.delete (info.id);
                 updateList();

@@ -39,6 +39,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +63,9 @@
                     <Spinner
                         android:id="@+id/TeamHome"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:spinnerMode="dialog"
+                        android:verticalScrollbarPosition="right" />
 
                     <requestFocus />
                 </LinearLayout>
@@ -75,7 +83,9 @@
                     <Spinner
                         android:id="@+id/TeamGuest"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:spinnerMode="dialog"
+                        android:verticalScrollbarPosition="right" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -120,6 +130,18 @@
 
                 </LinearLayout>
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/inviz1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/inviz2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
