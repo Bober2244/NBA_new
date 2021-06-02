@@ -21,7 +21,6 @@ public class AddActivity extends Activity {
     private long MyMatchID;
 
     Teams t = new Teams();
-    ArrayList<String> data = t.team_;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +35,16 @@ public class AddActivity extends Activity {
         etGoalsGuest=(EditText)findViewById(R.id.GoalsGuest);
         btSave=(Button)findViewById(R.id.butSave);
         btCancel=(Button)findViewById(R.id.butCancel);
+        t.team_.add("Warriors");
+        t.team_.add("Blazers");
+        t.team_.add("Hawks");
+        t.team_.add("Lakers");
+        t.team_.add("Clippers");
+        t.team_.add("Celtics");
+        t.team_.add("Jazz");
+        t.team_.add("Suns");
+        t.team_.add("Nuggets");
+        t.team_.add("Bulls");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, t.team_);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -46,10 +55,8 @@ public class AddActivity extends Activity {
         spinner2.setAdapter(adapter);
         spinner1.setPrompt("Команда хозяев");
         spinner2.setPrompt("Команда гостей");
-        // выделяем элемент
         spinner1.setSelection(0);
         spinner2.setSelection(0);
-        // устанавливаем обработчик нажатия
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -97,5 +104,19 @@ public class AddActivity extends Activity {
                 finish();
             }
         });
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        t.team_.remove("Warriors");
+        t.team_.remove("Blazers");
+        t.team_.remove("Hawks");
+        t.team_.remove("Lakers");
+        t.team_.remove("Clippers");
+        t.team_.remove("Celtics");
+        t.team_.remove("Jazz");
+        t.team_.remove("Suns");
+        t.team_.remove("Nuggets");
+        t.team_.remove("Bulls");
     }
 }

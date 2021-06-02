@@ -21,12 +21,12 @@ public class AddTeams extends Activity {
         b1= (Button) findViewById(R.id.button);
         b2= (Button) findViewById(R.id.button2);
 
-        Teams t = new Teams();
-        ArrayList<String> a = t.team_;
+        Teams te = new Teams();
+        ArrayList<String> a = te.team_;
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                t.addTeam(com);
+                te.addTeam(com);
                 finish();
             }
         });

@@ -12,5 +12,4 @@ public class Teams {
     public void addTeam(EditText s){
         team_.add(s.getText().toString());
     }
-
 }
